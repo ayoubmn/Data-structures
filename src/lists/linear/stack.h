@@ -7,11 +7,11 @@ template<class Tab>
 Class Stack{
 private:
     int Tab[MAX]; // Maximum size of Stack
-    int size;
-    int top;
+    int Size;
+    int Top;
 public:
      Stack(){
-        top = -1;
+        Top = -1;
      }//construction
 
     ~Stack(void);//destruction
