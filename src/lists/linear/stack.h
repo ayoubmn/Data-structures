@@ -1,22 +1,21 @@
 #ifndef STACK_H
 #define STACK_H
 
-#define MAX 1000
-
-template<class Tab>
-Class Stack{
+template<class T>
+class Stack{
 private:
-    int Tab[MAX]; // Maximum size of Stack
-    int Size;
-    int Top;
+    int* Tab; // Maximum size of Stack
+    int Top=-1;
+    static const int growth_factor = 2;
+
 public:
-     Stack(){
-        Top = -1;
-     }//construction
+    int max_size = 5;
 
-    ~Stack(void);//destruction
+    Stack();//construction
 
-    bool puch(int Key);//adds key to collection
+    ~Stack();//destruction
+
+    void push(int Key);//adds key to collection
 
     int top();//return most recently add-key
 
@@ -24,6 +23,15 @@ public:
 
     bool isEmpty();//true if empty ,false if not
 
+    void increase(){
+        max_size = max_size*2;
+        T* Tab2= new T[max_size];
+        for(int i=0;i<Top+1;i++)
+            Tab2[i]=Tab[i];
+        delete [] Tab;
+        Tab=Tab2;
+        delete [] Tab2;
+    }
 
 };
 

@@ -3,35 +3,60 @@
 using namespace std;
 
 int main(){
+/*
+    Stack<int> stack;
+    stack.push(1);
+    stack.push(2);
+    stack.push(3);
+    stack.push(4);
+    stack.push(5);
+    stack.push(6);
+    stack.push(7);
 
+    cout<<stack.top()<<endl;
+    int i=stack.pop();
+    cout<<stack.top()<<endl;
+    cout<<i<<endl;
+    cout<<"max size is "<<stack.max_size<<endl;
+*/
 };
 
-Stack::~Stack(void){
+template <class T>
+Stack<T>::Stack() {
+    Stack<T>::Tab = new T[max_size];
+}
+
+template <class T>
+Stack<T>::~Stack(){
     delete [] Stack::Tab;
 }
-bool Stack::push(int key){
-    if(key>=(MAX-1))
-        return false;
-    else{
-        Tab(++ Stack::Top)=key;
-        return true;
+
+template <class T>
+void Stack<T>::push(int key){
+    if(Top==max_size){
+        increase();
     }
+    Tab[++Top]=key;
+
 }
 
-int Stack::top(){
-   if(Stack::Top>=0)
-        return Stack::Tab[Stack::Top];
+template <class T>
+int Stack<T>::top(){
+    if(Top>=0)
+        return Tab[Top];
 }
 
-int Stack::pop(){
-    if(Stack::Top>=0){
-        int current=Stack::Tab[Stack::Top];
+template <class T>
+int Stack<T>::pop(){
+    if(Top>=0){
+        int current=Tab[Top];
         --Top;
         return current;
     }
 }
 
-bool Stack::isEmpty(){
+template <class T>
+bool Stack<T>::isEmpty(){
     return (Top < 0);
 }
 
