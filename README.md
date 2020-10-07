@@ -9,7 +9,7 @@ $ make ds clean
 ```
 the output will be in a `lib` folder.
 ## Demos
-There is some demos in the `test` folder, compile them using the makefile
+There are some demos in the `test` folder, compile them using the makefile
 ```bash
 make all
 ```
