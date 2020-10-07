@@ -19,7 +19,7 @@ you will end up with a `bin` folder containing all the demos.
 - [ ] List
 - [ ] Ordered_list
 - [ ] Queue
-- [*] Stack
+- [x] Stack
 ### Linked_list
 - [ ] Linked list
 - [ ] Circular linked list
