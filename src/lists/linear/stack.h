@@ -1,38 +1,44 @@
-#ifndef STACK_H
-#define STACK_H
+#pragma once
 
-template<class T>
+#include <iostream>
+
+template <typename T>
 class Stack{
 private:
-    int* Tab; // Maximum size of Stack
-    int Top=-1;
-    static const int growth_factor = 2;
+    T*              m_tab;
+    int             m_top;
+    unsigned int    max_size = 5;
 
+    static const short growth_factor = 2;
 public:
-    int max_size = 5;
+    Stack();
+    ~Stack();
+    
+    /* Adds a key to the stack */
+    void push(T Key);
+    
+    /* Removes and returns the most recently added key */
+    T pop();
 
-    Stack();//construction
+    /* Returns the most recently added key */
+    T top() const;
 
-    ~Stack();//destruction
+    inline bool isEmpty() const{
+        return (m_top < 0);
+    };
 
-    void push(int Key);//adds key to collection
+    void expand();
 
-    int top();//return most recently add-key
+    inline void print() const{
+        std::cout<<"\n";
 
-    int pop();//removes most recently add-key and return it
-
-    bool isEmpty();//true if empty ,false if not
-
-    void increase(){
-        max_size = max_size*2;
-        T* Tab2= new T[max_size];
-        for(int i=0;i<Top+1;i++)
-            Tab2[i]=Tab[i];
-        delete [] Tab;
-        Tab=Tab2;
-        delete [] Tab2;
-    }
-
+        if(m_top < 0){
+            std::cout<<"[ Empty stack ]";
+            return;
+        }
+        /* TODO: use iterators */
+        for(unsigned long i = 0; i <= m_top; i++){
+            std::cout<<"["<<m_tab[i]<<"]";
+        }
+    };
 };
-
-#endif

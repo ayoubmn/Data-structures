@@ -1,63 +1,46 @@
 #include <iostream>
 #include "stack.h"
-using namespace std;
 
-int main(){
-/*
-    Stack<int> stack;
-    stack.push(1);
-    stack.push(2);
-    stack.push(3);
-    stack.push(4);
-    stack.push(5);
-    stack.push(6);
-    stack.push(7);
-
-    cout<<stack.top()<<endl;
-    int i=stack.pop();
-    cout<<stack.top()<<endl;
-    cout<<i<<endl;
-    cout<<"max size is "<<stack.max_size<<endl;
-*/
-};
-
-template <class T>
-Stack<T>::Stack() {
-    Stack<T>::Tab = new T[max_size];
+template <typename T>
+Stack<T>::Stack()
+     :m_top(-1)
+{
+     m_tab = new T[max_size];
 }
 
-template <class T>
+template <typename T>
 Stack<T>::~Stack(){
-    delete [] Stack::Tab;
+     delete [] m_tab;
 }
 
-template <class T>
-void Stack<T>::push(int key){
-    if(Top==max_size){
-        increase();
-    }
-    Tab[++Top]=key;
-
+template <typename T>
+void Stack<T>::push(T key){
+     if(m_top == max_size)
+          expand();
+     m_tab[++m_top] = key;
 }
 
-template <class T>
-int Stack<T>::top(){
-    if(Top>=0)
-        return Tab[Top];
+template <typename T>
+T Stack<T>::top() const{
+     return (m_top >= 0)? m_top: -1;
 }
 
-template <class T>
-int Stack<T>::pop(){
-    if(Top>=0){
-        int current=Tab[Top];
-        --Top;
-        return current;
-    }
+template <typename T>
+T Stack<T>::pop(){
+     if(m_top < 0)
+          throw "Nothing to pop";
+     return m_tab[m_top--];
+}
+template <typename T>
+void Stack<T>::expand(){
+     max_size *= 2;
+     T* new_tab = new T[max_size]; 
+     std::copy(m_tab, m_tab + max_size, new_tab);
+     delete [] m_tab;
+     m_tab = new_tab;
 }
 
-template <class T>
-bool Stack<T>::isEmpty(){
-    return (Top < 0);
-}
-
+template class Stack<int>;
+template class Stack<float>;
+template class Stack<double>;
 
