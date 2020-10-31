@@ -37,7 +37,7 @@ public:
             return;
         }
         /* TODO: use iterators */
-        for(unsigned long i = 0; i <= m_top; i++){
+        for(unsigned long i = 0; i < m_top; i++){
             std::cout<<"["<<m_tab[i]<<"]";
         }
     };
